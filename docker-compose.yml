@@ -1,37 +1,18 @@
-version: '3'
 services:
-  bot:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: rasa
-    networks:
-      - all
-    ports:
-      - 5005:8080
-    volumes:
-      - ./:/app
-    public: true
-    command:
-      - run
-      - --enable-api
-      - --cors
-      - "*"
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: andersonoliveira/sprint-4-pb-rg-pel
+        container_name: sprint-4-pb-rg-pel
+        depends_on:
+            - mongodb
+        ports:
+            - 8080:8080
+        networks:
+            - prod
 
-  server-bot:
-    build:
-      context: .
-      dockerfile: server.Dockerfile
-    image: rasa-action-server
-    container_name: actions
-    networks:
-      - all
-    ports:
-      - "5055:8080"
-    volumes:
-      - "./actions:/app/actions"
-
-  mongodb:
+    mongodb:
         image: mongo
         container_name: db
         ports: 
@@ -43,8 +24,6 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: root
             MONGO_INITDB_DATABASE: test
 
-networks:
-  all:
-    driver: bridge
-    driver_opts:
-      com.docker.network.enable_ipv6: "true"
+networks: 
+    prod:
+        driver: bridge
