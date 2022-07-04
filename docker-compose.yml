@@ -4,8 +4,6 @@ services:
     image: bot4:latest
     ports:
       - 5005:5005
-    depends_on:
-      - action-server
     volumes:
       - ./:/app
     command:
