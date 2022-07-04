@@ -21,6 +21,6 @@ socket.on("bot_uttered", function (response) {
 })
 
 function botResponde(msg) {
-    let ul = document.querySelector(".starwars")
+    let ul = document.querySelector(".pokemon")
     ul.innerHTML += '<li>'+msg+'</li>'
 }
