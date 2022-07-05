@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: bot.Dockerfile
     ports:
-      - 5005:5005
+      - 5005:8080
     depends_on:
       - container-server-bot
     volumes:
