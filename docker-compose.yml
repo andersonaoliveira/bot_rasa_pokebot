@@ -11,13 +11,11 @@ services:
     volumes:
       - ./:/app
     command:
+      - rasa
       - run
       - --enable-api
       - --cors
       - "*"
-      - --credentials
-      - credentials.yml
-      - --debug
   container-server-bot:
     build:
       context: .
@@ -42,7 +40,7 @@ services:
 
   web:
     build:
-      context: ./web/
+      context: ./webchat/
       dockerfile: web.Dockerfile
     image: webchat
     container_name: webchat-app
